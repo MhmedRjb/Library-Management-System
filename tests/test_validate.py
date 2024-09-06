@@ -43,6 +43,44 @@ class TestValidate(unittest.TestCase):
             validate.validate_date("40-01-20000")
         with self.assertRaises(ValueError):
             validate.validate_date("01-13-2000")
+    def test_is_the_book_exist(self):
+        with open("books.json", "w") as file:
+            file.write('''
+            [
+                {"title": "The Alchemist", "author": "Paulo Coelho", "genre": "Adventure"},
+                {"title": "The Da Vinci Code", "author": "Dan Brown", "genre": "Mystery"}
+            ]
+            ''')
+        self.assertTrue(validate.is_the_book_exist("The Alchemist"))
+        with self.assertRaises(ValueError):
+            validate.is_the_book_exist("The Great Gatsby")
+        with self.assertRaises(ValueError):
+            validate.is_the_book_exist(123)
+    def test_is_the_member_exist(self):
+        with open("members.json", "w") as file:
+            file.write('''
+            [
+                {"name": "John Doe", "email": "mm@gmail.com", "register_date": "1-1-2000", "role": "admin"},
+                {"name": "Jane Doe", "email": "kd@df.cxo", "register_date": "15-5-2010"}
+            ]
+            ''')
+        self.assertTrue(validate.is_the_member_exist("John Doe"))
+        with self.assertRaises(ValueError):
+            validate.is_the_member_exist("Alice Smith")
 
+        with self.assertRaises(ValueError):
+            validate.is_the_member_exist(123)
+
+    def test_validate_role(self):
+        with  open("members.json", "w") as file:
+            file.write('''
+            [
+                {"name": "John Doe", "email": "cd@fk.com", "register_date": "1-1-2000", "role": "staff"},
+                {"name": "Jane Doe", "email": "dasd@ds.com", "register_date": "15-5-2010", "role": "client"}
+            ]
+            ''')
+        self.assertTrue(validate.validate_staff_role("John Doe"))
+        with self.assertRaises(ValueError):
+            validate.validate_staff_role("Jane Doe")
 if __name__ == '__main__':
     unittest.main()

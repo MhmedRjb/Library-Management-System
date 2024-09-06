@@ -1,7 +1,7 @@
 # app/validate.py
 import re
 from datetime import datetime
-
+import json
 class validate:
     @staticmethod
     def validate_email(email: str) -> bool:
@@ -34,7 +34,53 @@ class validate:
             raise ValueError( {data},"not one of the available", roles)
         return True
 
+    @staticmethod
+    def is_the_member_exist(member_name: str) -> bool:
+        validate_str(member_name)
+        with open("members.json", "r") as file:
+            members = json.load(file)
+            for member in members:
+                if member["name"] == member_name:
+                    return True
+                else:
+                    raise ValueError(f"{member_name} is not in the library")
+
+    @staticmethod
+    def is_the_book_exist(title: str) -> bool:
+        validate_str(title)
+        with open("books.json", "r") as file:
+            books = json.load(file)
+            for book in books:
+
+                if book["title"] == title:
+                    return True
+                else:
+                    raise ValueError(f"{title} is not in the library")
+
+    @staticmethod
+    def is_book_available(title: str) -> bool:
+        pass
+        return True
+
+
+    @staticmethod
+    def validate_staff_role(member_name: str) -> bool:
+        with open("members.json", "r") as file:
+            members = json.load(file)
+            for member in members:
+                if member["name"] == member_name:
+                    if member["role"] in ["staff", "admin"]:
+                        return True
+                    else:
+                        raise ValueError(f"{member_name} is not a staff member")
+        return True
+
+
 validate_email = validate.validate_email
 validate_str = validate.validate_str
 validate_date = validate.validate_date
 validate_role = validate.validate_role
+is_the_member_exist = validate.is_the_member_exist
+is_the_book_exist = validate.is_the_book_exist
+is_book_available = validate.is_book_available
+validate_staff_role = validate.validate_staff_role
