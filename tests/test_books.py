@@ -12,26 +12,42 @@ class TestBook(unittest.TestCase):
         self.assertEqual(self.book.title, "The Alchemist")
         self.assertEqual(self.book.author, "Paulo Coelho")
         self.assertEqual(self.book.genre, "Adventure")
+        with self.assertRaises(ValueError):
+            Book("The Alchemist", "Paulo Coelho", 123)
+        with self.assertRaises(ValueError):
+            Book("The Alchemist", 123, "Adventure")
+        with self.assertRaises(ValueError):
+            Book(123, "Paulo Coelho", "Adventure")
+
         print("test_initialization passed")
 
     def test_str_method(self):
         self.assertEqual(str(self.book), "The Alchemist by Paulo Coelho is a Adventure book.")
+        with self.assertRaises(ValueError):
+            self.book.title = 123
         print("test_str_method passed")
 
     def test_title_property(self):
         self.book.title = "The Da Vinci Code"
         self.assertEqual(self.book.title, "The Da Vinci Code")
+        with self.assertRaises(ValueError):
+            self.book.title = 123
         print("test_title_property passed")
 
     def test_author_property(self):
         self.book.author = "Dan Brown"
         self.assertEqual(self.book.author, "Dan Brown")
+        with self.assertRaises(ValueError):
+            self.book.author = 123
         print("test_author_property passed")
 
     def test_genre_property(self):
         self.book.genre = "Mystery"
         self.assertEqual(self.book.genre, "Mystery")
+        with self.assertRaises(ValueError):
+            self.book.genre = 123
         print("test_genre_property passed")
+
     def test_to_dict(self):
         book_dict = self.book.to_dict()
         expected_dict = {

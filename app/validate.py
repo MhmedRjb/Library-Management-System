@@ -11,7 +11,7 @@ class validate:
         return True
 
     @staticmethod
-    def validate_data(*strings: str) -> bool:
+    def validate_str(*strings: str) -> bool:
         for string in strings:
             if not isinstance(string, str):
                 raise ValueError("string only")
@@ -35,6 +35,6 @@ class validate:
         return True
 
 validate_email = validate.validate_email
-validate_data = validate.validate_data
+validate_str = validate.validate_str
 validate_date = validate.validate_date
 validate_role = validate.validate_role

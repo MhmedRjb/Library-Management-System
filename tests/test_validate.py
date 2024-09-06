@@ -17,14 +17,14 @@ class TestValidate(unittest.TestCase):
             validate.validate_email("user.com")
 
     def test_validate_data(self):
-        self.assertTrue(validate.validate_data("string1", "string2"))
-        self.assertTrue(validate.validate_data("hello", "world"))
+        self.assertTrue(validate.validate_str("string1", "string2"))
+        self.assertTrue(validate.validate_str("hello", "world"))
         with self.assertRaises(ValueError):
-            validate.validate_data("string1", 123)
+            validate.validate_str("string1", 123)
         with self.assertRaises(ValueError):
-            validate.validate_data(456, "string2")
+            validate.validate_str(456, "string2")
         with self.assertRaises(ValueError):
-            validate.validate_data(None, "string2")
+            validate.validate_str(None, "string2")
 
     def test_validate_date(self):
         self.assertEqual(validate.validate_date("05-10-2023"), "05-10-2023")
