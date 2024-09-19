@@ -1,0 +1,1 @@
+[{"book_title": "The Alchemist", "due_date": "10-01-2023", "in_library": false, "issue_date": "01-01-2023", "member_name": "John Doe", "staff_name": "Alice Smith", "transaction_id": 26}, {"book_title": "The Da Vinci Code", "due_date": "12-01-2023", "in_library": false, "issue_date": "02-01-2023", "member_name": "Jane Doe", "staff_name": "Bob Smith", "transaction_id": 27}]
