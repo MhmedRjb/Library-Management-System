@@ -17,7 +17,7 @@ class Book_movements:
         self.issue_date = issue_date if issue_date else datetime.today().strftime('%d-%m-%Y')
         self.due_date = due_date if due_date else (datetime.today() + timedelta(days=DEFAULT_DUE_DATE_AFTER)).strftime(
             '%d-%m-%Y')
-        self.in_library = False
+        # self.in_library = False
         self.transaction_id = Book_movements._id_counter
         Book_movements._id_counter += 1
         self.issue_date = validate_date(self.issue_date)
@@ -47,7 +47,6 @@ def main():
         staff_name="Jane Doe",
         issue_date="01-01-2023",
     )
-    movement1.in_library = True
     print(movement1)
     print(movement2)
     print(movement1.to_dict())

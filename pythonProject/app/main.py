@@ -17,9 +17,9 @@ class Library:
         return f"Library: {self.items}"
 
     def save_all_data(self):
-        save_data("books.json", self.items['Book'])
-        save_data("members.json", self.items['Member'])
-        save_data("loans.json", self.items['Book_movements'])
+        save_data("../assets/books.json", self.items['Book'])
+        save_data("../assets/members.json", self.items['Member'])
+        save_data("../assets/loans.json", self.items['Book_movements'])
 
     def add_item(self, item):
         item_type = type(item).__name__
@@ -282,7 +282,6 @@ def main_menu(library):
             while True:
                 try:
                     book_title = input("Enter book title to return: ")
-                    print(f"Received input: '{book_title}' (Type: {type(book_title)})")  # Debugging output
                     library.return_book(book_title)
                     break
                 except ValueError as e:
@@ -295,8 +294,8 @@ def main_menu(library):
             print("Invalid choice. Please try again.")
 def main():
     library = Library()
-    library.load_items('Book', "books.json", Book)
-    library.load_items('Member', "members.json", Member)
+    library.load_items('Book', "../assets/books.json", Book)
+    library.load_items('Member', "../assets/members.json", Member)
     main_menu(library)
 
 if __name__ == '__main__':

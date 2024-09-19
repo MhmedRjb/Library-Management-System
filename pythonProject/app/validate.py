@@ -45,7 +45,7 @@ class validate:
 
     @staticmethod
     def is_the_member_exist(member_name: str) -> bool:
-        with open("members.json", "r") as file:
+        with open("../assets/members.json", "r") as file:
             members = json.load(file)
             for member in members:
                 if member["name"] == member_name:
@@ -54,7 +54,7 @@ class validate:
 
     @staticmethod
     def is_the_book_exist(title: str) -> bool:
-        with open("books.json", "r") as file:
+        with open("../assets/books.json", "r") as file:
             books = json.load(file)
             for book in books:
                 if book["title"] == title:
@@ -69,7 +69,7 @@ class validate:
 
     @staticmethod
     def validate_staff_role(member_name: str) -> bool:
-        with open("members.json", "r") as file:
+        with open("../assets/members.json", "r") as file:
             members = json.load(file)
             for member in members:
                 if member["name"] == member_name:
